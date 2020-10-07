@@ -1,3 +1,5 @@
+import { ADD_FEATURE } from "../actions/actions";
+
 const initialState = {
   additionalPrice: 0,
   car: {
@@ -15,11 +17,20 @@ const initialState = {
   ],
 };
 
-const carFeatureReducer = (state = initialState, action) => {
+export const carFeatureReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_FEATURE:
+      if (!state.car.features.includes(action.payload)) {
+        return {
+          ...state,
+          car: {
+            ...state.car,
+            features: [...state.car.features, action.payload],
+          },
+        };
+      }
+      return state;
     default:
       return state;
   }
 };
-
-export default carFeatureReducer;
