@@ -27,6 +27,7 @@ export const carFeatureReducer = (state = initialState, action) => {
             ...state.car,
             features: [...state.car.features, action.payload],
           },
+          additionalPrice: state.additionalPrice + action.payload.price,
         };
       }
       return state;
@@ -39,6 +40,7 @@ export const carFeatureReducer = (state = initialState, action) => {
             (feature) => feature !== action.payload
           ),
         },
+        additionalPrice: state.additionalPrice - action.payload.price,
       };
     default:
       return state;
